@@ -6,39 +6,117 @@
   <title>STLND — Mediterranean Jewelry</title>
 
   <style>
-    :root{
-      --bg:#ffffff;
-      --line:#000000;
-      --text:#0a0a0a;
-      --accent:#d4af37;
-      --danger:#c0392b;
+    :root {
+      --bg: #ffffff;
+      --line: #000000;
+      --text: #0a0a0a;
+      --accent: #d4af37;
+      --danger: #c0392b;
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
-    header{max-width:1100px;margin:0 auto;padding:28px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
-    h1{margin:0;font-size:20px;letter-spacing:6px}
-    main{max-width:1100px;margin:40px auto;padding:0 20px}
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; 
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial; 
+      background: var(--bg); 
+      color: var(--text); 
+    }
+    header { 
+      max-width: 1100px; 
+      margin: 0 auto; 
+      padding: 28px 20px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      border-bottom: 1px solid var(--line); 
+    }
+    h1 { margin: 0; font-size: 20px; letter-spacing: 6px; }
+    main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
 
-    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px;margin-top:40px}
+    .products { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 32px; 
+      margin-top: 40px; 
+    }
 
-    .card{border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px}
+    .card { 
+      border: 1px solid var(--line); 
+      border-radius: 12px; 
+      padding: 18px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 14px; 
+    }
 
-    .image-wrapper{position:relative;height:220px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,.1)}
-    .image-wrapper img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .3s ease}
-    .image-wrapper img.second{opacity:0}
-    .image-wrapper:hover img.second{opacity:1}
+    .image-wrapper { 
+      position: relative; 
+      height: 280px; 
+      border-radius: 10px; 
+      overflow: hidden; 
+      border: 1px solid rgba(0,0,0,.1); 
+      background: #f9f9f9;
+    }
+    .image-wrapper img { 
+      position: absolute; 
+      inset: 0; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: opacity .4s ease-in-out; 
+    }
+    .image-wrapper img.second { opacity: 0; }
+    .image-wrapper:hover img.second { opacity: 1; }
 
-    .badge{position:absolute;top:10px;left:10px;background:var(--danger);color:#fff;padding:4px 8px;font-size:12px;border-radius:6px;display:none}
+    .badge { 
+      position: absolute; 
+      top: 10px; 
+      left: 10px; 
+      background: var(--danger); 
+      color: #fff; 
+      padding: 4px 8px; 
+      font-size: 12px; 
+      border-radius: 6px; 
+      display: none; 
+      z-index: 10;
+    }
 
-    h3{margin:0}
-    select,button{border:1px solid var(--line);background:transparent;padding:8px;border-radius:6px;font-size:14px}
-    button{cursor:pointer}
-    button[disabled]{opacity:.4;cursor:not-allowed}
-    .price{font-weight:700}
-    .meta{display:flex;justify-content:space-between;align-items:center}
-    .stock{font-size:13px;opacity:.7}
+    h3 { margin: 0; font-size: 18px; }
+    select, button { 
+      border: 1px solid var(--line); 
+      background: transparent; 
+      padding: 10px; 
+      border-radius: 6px; 
+      font-size: 14px; 
+      width: 100%;
+    }
+    button { 
+      cursor: pointer; 
+      background: var(--line); 
+      color: white; 
+      font-weight: 600; 
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.8; }
+    button[disabled] { 
+      background: transparent; 
+      color: var(--line); 
+      opacity: .4; 
+      cursor: not-allowed; 
+    }
+    .price { font-weight: 700; font-size: 16px; }
+    .meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .stock { font-size: 13px; opacity: .7; }
 
-    footer{max-width:1100px;margin:60px auto 20px;padding:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,.7)}
+    footer { 
+      max-width: 1100px; 
+      margin: 60px auto 20px; 
+      padding: 20px; 
+      border-top: 1px solid var(--line); 
+      display: flex; 
+      justify-content: space-between; 
+      font-size: 13px; 
+      color: rgba(0,0,0,.7); 
+    }
   </style>
 </head>
 <body>
@@ -56,52 +134,80 @@
 
   <section class="products">
 
-    <!-- NAUTIC BRACELET -->
     <article class="card" id="nautic">
-      <div class="image-wrapper"><span class="badge">Agotado</span>
-        <img id="nauticImg1" <img src="nautic-black.jpg">
-        <img id="nauticImg2" <img src="nautic-navy.jpg"> class="second">
+      <div class="image-wrapper">
+        <span class="badge">Agotado</span>
+        <img id="nauticImg1" src="images/nautic-black-1.jpg" alt="Nautic 1">
+        <img id="nauticImg2" src="images/nautic-black-2.jpg" class="second" alt="Nautic 2">
       </div>
       <h3>Nautic Bracelet</h3>
-      <select id="nauticColor"><option disabled selected>Elegir color</option><option value="Navy" data-stock="6">Navy Blue</option><option value="Black" data-stock="3">Black</option></select>
+      <select id="nauticColor">
+        <option disabled selected>Elegir color</option>
+        <option value="Navy" data-stock="6">Navy Blue</option>
+        <option value="Black" data-stock="3">Black</option>
+      </select>
       <div class="stock" id="nauticStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$30,000 COP</div><button id="nauticBtn" disabled>Ordenar</button></div>
+      <div class="meta">
+        <div class="price">$30,000 COP</div>
+        <button id="nauticBtn" disabled>Ordenar</button>
+      </div>
     </article>
 
-    <!-- BEACH BRACELET -->
     <article class="card" id="beach">
-      <div class="image-wrapper"><span class="badge">Agotado</span>
-        <img id="beachImg1" <img src="beach-gold.jpg">
-        <img id="beachImg2" <img src="beach-silver.jpg"> class="second">
+      <div class="image-wrapper">
+        <span class="badge">Agotado</span>
+        <img id="beachImg1" src="images/beach-gold-1.jpg">
+        <img id="beachImg2" src="images/beach-silver-2.jpg" class="second">
       </div>
       <h3>Beach Bracelet</h3>
-      <select id="beachColor"><option disabled selected>Elegir color</option><option value="Gold" data-stock="2">Gold</option><option value="Silver" data-stock="3">Silver</option></select>
+      <select id="beachColor">
+        <option disabled selected>Elegir color</option>
+        <option value="Gold" data-stock="2">Gold</option>
+        <option value="Silver" data-stock="3">Silver</option>
+      </select>
       <div class="stock" id="beachStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$32,000 COP</div><button id="beachBtn" disabled>Ordenar</button></div>
+      <div class="meta">
+        <div class="price">$32,000 COP</div>
+        <button id="beachBtn" disabled>Ordenar</button>
+      </div>
     </article>
 
-    <!-- THIN CUBAN NECKLACE -->
     <article class="card" id="cuban">
-      <div class="image-wrapper"><span class="badge">Agotado</span>
-        <img id="cubanImg1" <img src="cuban-gold.jpg">
-        <img id="cubanImg2" <img src="cuban-silver.jpg"> class="second">
+      <div class="image-wrapper">
+        <span class="badge">Agotado</span>
+        <img id="cubanImg1" src="images/cuban-gold-1.jpg">
+        <img id="cubanImg2" src="images/cuban-silver-1.jpg" class="second">
       </div>
       <h3>Thin Cuban Necklace</h3>
-      <select id="cubanColor"><option disabled selected>Elegir color</option><option value="Gold" data-stock="3">Gold</option><option value="Silver" data-stock="2">Silver</option></select>
+      <select id="cubanColor">
+        <option disabled selected>Elegir color</option>
+        <option value="Gold" data-stock="3">Gold</option>
+        <option value="Silver" data-stock="2">Silver</option>
+      </select>
       <div class="stock" id="cubanStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$38,000 COP</div><button id="cubanBtn" disabled>Ordenar</button></div>
+      <div class="meta">
+        <div class="price">$38,000 COP</div>
+        <button id="cubanBtn" disabled>Ordenar</button>
+      </div>
     </article>
 
-    <!-- CUBE NECKLACE -->
     <article class="card" id="cube">
-      <div class="image-wrapper"><span class="badge">Agotado</span>
-        <img id="cubeImg1" <img src="cube-gold.jpg">
-        <img id="cubeImg2" <img src="cube-silver.jpg"> class="second">
+      <div class="image-wrapper">
+        <span class="badge">Agotado</span>
+        <img id="cubeImg1" src="images/cube-gold-1.jpg">
+        <img id="cubeImg2" src="images/cube-silver-1.jpg" class="second">
       </div>
       <h3>Cube Necklace</h3>
-      <select id="cubeColor"><option disabled selected>Elegir color</option><option value="Gold" data-stock="4">Gold</option><option value="Silver" data-stock="3">Silver</option></select>
+      <select id="cubeColor">
+        <option disabled selected>Elegir color</option>
+        <option value="Gold" data-stock="4">Gold</option>
+        <option value="Silver" data-stock="3">Silver</option>
+      </select>
       <div class="stock" id="cubeStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$38,000 COP</div><button id="cubeBtn" disabled>Ordenar</button></div>
+      <div class="meta">
+        <div class="price">$38,000 COP</div>
+        <button id="cubeBtn" disabled>Ordenar</button>
+      </div>
     </article>
 
   </section>
@@ -119,33 +225,106 @@
 </footer>
 
 <script>
-function setupProduct(config){
-  const select=document.getElementById(config.select);
-  const btn=document.getElementById(config.btn);
-  const stockText=document.getElementById(config.stock);
-  const img1=document.getElementById(config.img1);
-  const img2=document.getElementById(config.img2);
-  const badge=document.querySelector(`#${config.id} .badge`);
+function setupProduct(config) {
+  const select = document.getElementById(config.select);
+  const btn = document.getElementById(config.btn);
+  const stockText = document.getElementById(config.stock);
+  const img1 = document.getElementById(config.img1);
+  const img2 = document.getElementById(config.img2);
+  const badge = document.querySelector(`#${config.id} .badge`);
 
-  select.addEventListener('change',()=>{
-    const opt=select.options[select.selectedIndex];
-    const color=opt.value;const stock=parseInt(opt.dataset.stock);
-    img1.src=config.images[color][0];img2.src=config.images[color][1];
-    if(stock>0){badge.style.display='none';stockText.textContent=`Stock disponible: ${stock}`;btn.disabled=false;btn.textContent='Ordenar';}
-    else{badge.style.display='block';stockText.textContent='Agotado';btn.disabled=true;btn.textContent='Agotado';}
+  select.addEventListener('change', () => {
+    const opt = select.options[select.selectedIndex];
+    const color = opt.value;
+    const stock = parseInt(opt.dataset.stock);
+
+    // Cambio de imágenes basado en la selección
+    if (config.images[color]) {
+      img1.src = config.images[color][0];
+      img2.src = config.images[color][1];
+    }
+
+    // Lógica de Stock
+    if (stock > 0) {
+      badge.style.display = 'none';
+      stockText.textContent = `Stock disponible: ${stock}`;
+      btn.disabled = false;
+      btn.textContent = 'Ordenar';
+    } else {
+      badge.style.display = 'block';
+      stockText.textContent = 'Agotado';
+      btn.disabled = true;
+      btn.textContent = 'Agotado';
+    }
   });
 
-  btn.addEventListener('click',()=>{
-    const color=select.value;
-    const msg=`Hola, quiero comprar el ${config.name} (${color}) por ${config.price}`;
-    window.open(`https://wa.me/573052133291?text=${encodeURIComponent(msg)}`,'_blank');
+  btn.addEventListener('click', () => {
+    const color = select.value;
+    const msg = `Hola, quiero comprar el ${config.name} (${color}) por ${config.price}. ¿Sigue disponible?`;
+    window.open(`https://wa.me/573052133291?text=${encodeURIComponent(msg)}`, '_blank');
   });
 }
 
-setupProduct({id:'nautic',name:'Nautic Bracelet',price:'$30,000 COP',select:'nauticColor',btn:'nauticBtn',stock:'nauticStock',img1:'nauticImg1',img2:'nauticImg2',images:{Navy:['images/nautic-navy-1.jpg','images/nautic-navy-2.jpg'],Black:['images/nautic-black-1.jpg','images/nautic-black-2.jpg']}});
-setupProduct({id:'beach',name:'Beach Bracelet',price:'$30,000 COP',select:'beachColor',btn:'beachBtn',stock:'beachStock',img1:'beachImg1',img2:'beachImg2',images:{Gold:['images/beach-gold-1.jpg','images/beach-gold-2.jpg'],Silver:['images/beach-silver-1.jpg','images/beach-silver-2.jpg']}});
-setupProduct({id:'cuban',name:'Thin Cuban Necklace',price:'$38,000 COP',select:'cubanColor',btn:'cubanBtn',stock:'cubanStock',img1:'cubanImg1',img2:'cubanImg2',images:{Gold:['images/cuban-gold-1.jpg','images/cuban-gold-2.jpg'],Silver:['images/cuban-silver-1.jpg','images/cuban-silver-2.jpg']}});
-setupProduct({id:'cube',name:'Cube Necklace',price:'$38,000 COP',select:'cubeColor',btn:'cubeBtn',stock:'cubeStock',img1:'cubeImg1',img2:'cubeImg2',images:{Gold:['images/cube-gold-1.jpg','images/cube-gold-2.jpg'],Silver:['images/cube-silver-1.jpg','images/cube-silver-2.jpg']}});
+// Inicialización de productos con sus respectivas rutas de imagen
+setupProduct({
+  id: 'nautic', 
+  name: 'Nautic Bracelet', 
+  price: '$30,000 COP', 
+  select: 'nauticColor', 
+  btn: 'nauticBtn', 
+  stock: 'nauticStock', 
+  img1: 'nauticImg1', 
+  img2: 'nauticImg2', 
+  images: {
+    Navy: ['images/nautic-navy-1.jpg', 'images/nautic-navy-2.jpg'],
+    Black: ['images/nautic-black-1.jpg', 'images/nautic-black-2.jpg']
+  }
+});
+
+setupProduct({
+  id: 'beach', 
+  name: 'Beach Bracelet', 
+  price: '$32,000 COP', 
+  select: 'beachColor', 
+  btn: 'beachBtn', 
+  stock: 'beachStock', 
+  img1: 'beachImg1', 
+  img2: 'beachImg2', 
+  images: {
+    Gold: ['images/beach-gold-1.jpg', 'images/beach-gold-2.jpg'],
+    Silver: ['images/beach-silver-1.jpg', 'images/beach-silver-2.jpg']
+  }
+});
+
+setupProduct({
+  id: 'cuban', 
+  name: 'Thin Cuban Necklace', 
+  price: '$38,000 COP', 
+  select: 'cubanColor', 
+  btn: 'cubanBtn', 
+  stock: 'cubanStock', 
+  img1: 'cubanImg1', 
+  img2: 'cubanImg2', 
+  images: {
+    Gold: ['images/cuban-gold-1.jpg', 'images/cuban-gold-2.jpg'],
+    Silver: ['images/cuban-silver-1.jpg', 'images/cuban-silver-2.jpg']
+  }
+});
+
+setupProduct({
+  id: 'cube', 
+  name: 'Cube Necklace', 
+  price: '$38,000 COP', 
+  select: 'cubeColor', 
+  btn: 'cubeBtn', 
+  stock: 'cubeStock', 
+  img1: 'cubeImg1', 
+  img2: 'cubeImg2', 
+  images: {
+    Gold: ['images/cube-gold-1.jpg', 'images/cube-gold-2.jpg'],
+    Silver: ['images/cube-silver-1.jpg', 'images/cube-silver-2.jpg']
+  }
+});
 </script>
 
 </body>
