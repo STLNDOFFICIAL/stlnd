@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STLND — Mediterranean Jewelry</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --line:#000000;
+      --text:#0a0a0a;
+      --accent:#d4af37;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+    }
+    header{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid var(--line);
+    }
+    h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:6px;
+    }
+    main{
+      max-width:1100px;
+      margin:40px auto;
+      padding:0 20px;
+    }
+    .intro h2{margin:0 0 8px;font-size:28px}
+    .intro p{margin:0;color:rgba(0,0,0,.7)}
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:28px;
+      margin-top:40px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .img{
+      height:180px;
+      border:1px dashed rgba(0,0,0,.15);
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:13px;
+      opacity:.6;
+    }
+    .meta{display:flex;justify-content:space-between;align-items:center}
+    .price{font-weight:700}
+    select,button{
+      border:1px solid var(--line);
+      background:transparent;
+      padding:8px;
+      border-radius:6px;
+      font-size:14px;
+    }
+    button{cursor:pointer}
+    button[disabled]{opacity:.4;cursor:not-allowed}
+    footer{
+      max-width:1100px;
+      margin:60px auto 20px;
+      padding:20px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      font-size:13px;
+      color:rgba(0,0,0,.7);
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>STLND</h1>
+  <div>@stlndofficial</div>
+</header>
+
+<main>
+  <section class="intro">
+    <h2>DROP 01 — Essentials</h2>
+    <p>Mediterranean-inspired chains & bracelets. Limited quantities.</p>
+  </section>
+
+  <section class="products">
+
+    <article class="card" data-stock="9">
+      <div class="img">Add image</div>
+      <h3>Nautic Bracelet</h3>
+      <select>
+        <option disabled selected>Select color</option>
+        <option>Navy Blue</option>
+        <option>Black</option>
+      </select>
+      <div class="meta">
+        <div class="price">$32,000 COP</div>
+        <button>Order</button>
+      </div>
+    </article>
+
+    <article class="card" data-stock="6">
+      <div class="img">Add image</div>
+      <h3>Beach Bracelet</h3>
+      <select>
+        <option disabled selected>Select color</option>
+        <option>Gold</option>
+        <option>Silver</option>
+      </select>
+      <div class="meta">
+        <div class="price">$38,000 COP</div>
+        <button>Order</button>
+      </div>
+    </article>
+
+    <article class="card" data-stock="5">
+      <div class="img">Add image</div>
+      <h3>Thin Cuban Chain</h3>
+      <select>
+        <option disabled selected>Select color</option>
+        <option>Gold</option>
+        <option>Silver</option>
+      </select>
+      <div class="meta">
+        <div class="price">$42,000 COP</div>
+        <button>Order</button>
+      </div>
+    </article>
+
+    <article class="card" data-stock="7">
+      <div class="img">Add image</div>
+      <h3>Box Chain</h3>
+      <select>
+        <option disabled selected>Select color</option>
+        <option>Gold</option>
+        <option>Silver</option>
+      </select>
+      <div class="meta">
+        <div class="price">$42,000 COP</div>
+        <button>Order</button>
+      </div>
+    </article>
+
+  </section>
+
+  <section style="margin-top:60px;max-width:720px">
+    <h2>About STLND</h2>
+    <p>
+      <strong>STLND</strong> comes from “settled”: calm, intentional and confident.
+      We are two young brothers from Colombia building a Mediterranean-inspired jewelry brand with clean design and timeless pieces.
+      <br><br>
+      <strong>Made in Colombia.</strong> Limited drops only.
+    </p>
+    <p>
+      Shipping available only in Colombia. Shipping cost paid by customer.<br>
+      Packaging: premium transparent zipper pouch with 3D STLND branding.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div>© 2025 STLND</div>
+  <div>Follow @stlndofficial • DM to order</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.card').forEach(card=>{
+    const btn = card.querySelector('button');
+    const select = card.querySelector('select');
+    const stock = parseInt(card.dataset.stock);
+
+    if(stock<=0){
+      btn.textContent='Agotado';
+      btn.disabled=true;
+    }
+
+    btn.addEventListener('click',()=>{
+      if(!select.value){alert('Select a color');return;}
+      const product = card.querySelector('h3').innerText;
+      const price = card.querySelector('.price').innerText;
+      const msg = `Hola, quiero comprar el ${product} (${select.value}) por ${price}`;
+      window.open(`https://wa.me/573000000000?text=${encodeURIComponent(msg)}`,'_blank');
+    });
+  });
+</script>
+</body>
+</html>
