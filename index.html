@@ -1,203 +1,304 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STLND — Mediterranean Jewelry</title>
+  <title>STLND — The Mediterranean Series</title>
   <style>
-    :root{ --bg:#ffffff; --line:#000000; --text:#0a0a0a; --danger:#c0392b; }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
-    
-    /* Header con Logo de IG */
-    header{
-      max-width:1100px;margin:0 auto;padding:28px 20px;
-      display:flex;justify-content:space-between;align-items:center;
-      border-bottom:1px solid var(--line);
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --line: #f2f2f2; 
+      --faded: #888888;
+      --heading-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
+
+    * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+    
+    body { 
+      margin: 0; 
+      font-family: var(--heading-font); 
+      background: var(--bg); 
+      color: var(--text); 
+    }
+
+    /* HEADER */
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 { 
+      margin: 0; 
+      font-size: 13px; 
+      font-weight: 700; 
+      letter-spacing: 0.4em; 
+      text-transform: uppercase;
+    }
+
     .ig-link {
-      display: flex; align-items: center; gap: 8px;
-      text-decoration: none; color: var(--text); font-size: 14px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 120px 40px 80px 40px;
+      max-width: 1200px;
+    }
+
+    .hero .drop-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--faded);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin: 0;
+      line-height: 1.1;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero p {
+      margin-top: 25px;
+      max-width: 380px;
+      font-size: 11px;
+      line-height: 1.8;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--faded);
+    }
+
+    /* PRODUCT GRID */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      border-top: 1px solid var(--line);
+    }
+
+    .card {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-wrapper {
+      position: relative;
+      aspect-ratio: 1 / 1.2;
+      overflow: hidden;
+      margin-bottom: 30px;
+      background: #fcfcfc;
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-info { text-align: left; }
+
+    h3 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 0.15em;
+    }
+
+    .price { 
+      font-size: 12px; 
+      color: var(--faded); 
+      margin-bottom: 25px;
+    }
+
+    select {
+      width: 100%;
+      border: 1px solid #e0e0e0;
+      padding: 12px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 0;
+      background: white;
+      margin-bottom: 10px;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      background: var(--text);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+    }
+
+    button:hover { background: #000; }
+
+    .stock-label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #aaa;
+      margin-top: 15px;
+      display: block;
+    }
+
+    /* SHIPPING INFO */
+    .shipping-info {
+        padding: 60px 40px;
+        border-bottom: 1px solid var(--line);
+        background: #fafafa;
     }
     
-    h1{margin:0;font-size:20px;letter-spacing:6px}
-    main{max-width:1100px;margin:40px auto;padding:0 20px}
-    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px;margin-top:40px}
-    .card{border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px}
-    .image-wrapper{position:relative;height:240px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,.1);background:#f9f9f9}
-    .image-wrapper img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .3s ease}
-    .image-wrapper img.second{opacity:0}
-    .image-wrapper:hover img.second{opacity:1}
-    .badge{position:absolute;top:10px;left:10px;background:var(--danger);color:#fff;padding:4px 8px;font-size:12px;border-radius:6px;display:none;z-index:10}
-    select,button{border:1px solid var(--line);background:transparent;padding:12px;border-radius:6px;font-size:14px;width:100%}
-    button{cursor:pointer;background:var(--line);color:white;font-weight:bold;text-transform:uppercase;letter-spacing:1px;transition: 0.3s}
-    button:active{transform: scale(0.98);}
-    button[disabled]{opacity:.3;cursor:not-allowed;background:transparent;color:var(--line)}
-    .price{font-weight:700; font-size: 18px;}
-    .meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
-    .stock{font-size:12px;opacity:0.6; margin-top: -5px}
-    .qr-section{text-align:center;margin:60px 0;padding:40px 20px;border:1px solid var(--line);border-radius:15px}
-    footer{max-width:1100px;margin:60px auto 20px;padding:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;opacity:0.7}
+    .shipping-info p {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        line-height: 2;
+        margin: 0;
+        color: var(--faded);
+    }
+
+    footer {
+      padding: 30px 40px;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      display: flex;
+      justify-content: space-between;
+      color: #bbb;
+    }
+
+    @media (max-width: 768px) {
+      .products { grid-template-columns: 1fr; }
+      header { padding: 15px 20px; }
+      .hero { padding: 80px 20px; }
+      .card { padding: 40px 20px; }
+    }
   </style>
 </head>
 <body>
 
 <header>
   <h1>STLND</h1>
-  <a href="https://www.instagram.com/stlndofficial" class="ig-link" target="_blank">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-    @stlndofficial
-  </a>
+  <a href="https://www.instagram.com/stlndofficial" class="ig-link" target="_blank">Instagram</a>
 </header>
 
 <main>
-  <section>
-    <h2>DROP 01 — Essentials</h2>
-    <p>Piezas minimalistas hechas en Colombia.</p>
+  <section class="hero">
+    <span class="drop-label">Project No. 01</span>
+    <h2>The Mediterranean Series</h2>
+    <p>A curated study of minimalism. Handcrafted jewelry designed in Colombia, inspired by the effortless luxury of the Mediterranean coast.</p>
   </section>
 
   <section class="products">
-    <article class="card" id="nautic">
+    <article class="card">
       <div class="image-wrapper">
-        <span class="badge">Agotado</span>
-        <img id="nauticImg1" src="images/nautic-black.jpg">
-        <img id="nauticImg2" src="images/nautic-navy.jpg" class="second">
+        <img src="images/nautic-black.jpg">
       </div>
-      <h3>Nautic Bracelet</h3>
-      <select id="nauticColor">
-        <option disabled selected>Elegir color</option>
-        <option value="Navy" data-stock="6">Navy Blue</option>
-        <option value="Black" data-stock="3">Black</option>
-      </select>
-      <div class="stock" id="nauticStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$30,000</div><button id="nauticBtn" disabled>Ordenar</button></div>
+      <div class="card-info">
+        <h3>Nautic Bracelet</h3>
+        <div class="price">30,000 COP</div>
+        <select id="nauticSelect">
+          <option value="Black Heritage">Black Heritage</option>
+          <option value="Navy Blue">Navy Blue</option>
+        </select>
+        <button onclick="order('Nautic Bracelet')">Order via DM</button>
+        <span class="stock-label">Availability: In Stock</span>
+      </div>
     </article>
 
-    <article class="card" id="beach">
+    <article class="card">
       <div class="image-wrapper">
-        <span class="badge">Agotado</span>
-        <img id="beachImg1" src="images/beach-gold.jpg">
-        <img id="beachImg2" src="images/beach-silver.jpg" class="second">
+        <img src="images/beach-silver.jpg">
       </div>
-      <h3>Beach Bracelet</h3>
-      <select id="beachColor">
-        <option disabled selected>Elegir color</option>
-        <option value="Gold" data-stock="2">Gold</option>
-        <option value="Silver" data-stock="3">Silver</option>
-      </select>
-      <div class="stock" id="beachStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$32,000</div><button id="beachBtn" disabled>Ordenar</button></div>
+      <div class="card-info">
+        <h3>Beach Bracelet</h3>
+        <div class="price">32,000 COP</div>
+        <select id="beachSelect">
+          <option value="Silver">Silver</option>
+          <option value="Gold">Gold</option>
+        </select>
+        <button onclick="order('Beach Bracelet')">Order via DM</button>
+        <span class="stock-label">Availability: In Stock</span>
+      </div>
     </article>
 
-    <article class="card" id="cuban">
+    <article class="card">
       <div class="image-wrapper">
-        <span class="badge">Agotado</span>
-        <img id="cubanImg1" src="images/cuban-gold.jpg">
-        <img id="cubanImg2" src="images/cuban-silver.jpg" class="second">
+        <img src="images/cuban-silver.jpg">
       </div>
-      <h3>Thin Cuban Necklace</h3>
-      <select id="cubanColor">
-        <option disabled selected>Elegir color</option>
-        <option value="Gold" data-stock="3">Gold</option>
-        <option value="Silver" data-stock="2">Silver</option>
-      </select>
-      <div class="stock" id="cubanStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$38,000</div><button id="cubanBtn" disabled>Ordenar</button></div>
+      <div class="card-info">
+        <h3>Thin Cuban Necklace</h3>
+        <div class="price">38,000 COP</div>
+        <select id="cubanSelect">
+          <option value="Silver">Silver</option>
+          <option value="Gold">Gold</option>
+        </select>
+        <button onclick="order('Thin Cuban Necklace')">Order via DM</button>
+        <span class="stock-label">Availability: In Stock</span>
+      </div>
     </article>
 
-    <article class="card" id="cube">
+    <article class="card">
       <div class="image-wrapper">
-        <span class="badge">Agotado</span>
-        <img id="cubeImg1" src="images/cube-gold.jpg">
-        <img id="cubeImg2" src="images/cube-silver.jpg" class="second">
+        <img src="images/cube-silver.jpg">
       </div>
-      <h3>Cube Necklace</h3>
-      <select id="cubeColor">
-        <option disabled selected>Elegir color</option>
-        <option value="Gold" data-stock="4">Gold</option>
-        <option value="Silver" data-stock="3">Silver</option>
-      </select>
-      <div class="stock" id="cubeStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$38,000</div><button id="cubeBtn" disabled>Ordenar</button></div>
+      <div class="card-info">
+        <h3>Cube Necklace</h3>
+        <div class="price">38,000 COP</div>
+        <select id="cubeSelect">
+          <option value="Silver">Silver</option>
+          <option value="Gold">Gold</option>
+        </select>
+        <button onclick="order('Cube Necklace')">Order via DM</button>
+        <span class="stock-label">Availability: In Stock</span>
+      </div>
     </article>
   </section>
 
-  <section class="qr-section">
-    <p style="letter-spacing: 3px; font-size: 12px; margin-bottom: 20px;">FOLLOW US ON INSTAGRAM</p>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/stlndofficial" alt="QR">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-        <span style="font-weight: 600;">@stlndofficial</span>
-    </div>
+  <section class="shipping-info">
+      <p>— Colombia wide shipping only.</p>
+      <p>— Costs covered by the recipient.</p>
   </section>
 </main>
 
 <footer>
   <div>© 2025 STLND</div>
-  <div>Colombia</div>
+  <div>Bogotá, Colombia</div>
 </footer>
 
 <script>
-// La lógica se mantiene igual, con las rutas corregidas a images/
-function setupProduct(config){
-  const select = document.getElementById(config.select);
-  const btn = document.getElementById(config.btn);
-  const stockText = document.getElementById(config.stock);
-  const img1 = document.getElementById(config.img1);
-  const img2 = document.getElementById(config.img2);
-  const badge = document.querySelector(`#${config.id} .badge`);
-
-  select.addEventListener('change', () => {
-    const opt = select.options[select.selectedIndex];
-    const color = opt.value;
-    const stock = parseInt(opt.dataset.stock);
-    
-    if(config.images[color]){
-      img1.src = config.images[color][0];
-      img2.src = config.images[color][1];
-    }
-
-    if(stock > 0){
-      badge.style.display = 'none';
-      stockText.textContent = `Stock: ${stock} unidades`;
-      btn.disabled = false;
-    } else {
-      badge.style.display = 'block';
-      stockText.textContent = 'Agotado';
-      btn.disabled = true;
-    }
-  });
-
-  btn.addEventListener('click', () => {
-    const color = select.value;
-    alert(`Escríbenos por DM: "Quiero ordenar ${config.name} en color ${color}"`);
+  function order(productName) {
+    // Esto abre el DM de Instagram directamente
     window.open('https://ig.me/m/stlndofficial', '_blank');
-  });
-}
-
-setupProduct({
-  id:'nautic', name:'Nautic Bracelet', select:'nauticColor', btn:'nauticBtn', stock:'nauticStock', 
-  img1:'nauticImg1', img2:'nauticImg2', 
-  images:{ Navy: ['images/nautic-navy.jpg', 'images/nautic-navy.jpg'], Black: ['images/nautic-black.jpg', 'images/nautic-black.jpg'] }
-});
-
-setupProduct({
-  id:'beach', name:'Beach Bracelet', select:'beachColor', btn:'beachBtn', stock:'beachStock', 
-  img1:'beachImg1', img2:'beachImg2', 
-  images:{ Gold: ['images/beach-gold.jpg', 'images/beach-gold.jpg'], Silver: ['images/beach-silver.jpg', 'images/beach-silver.jpg'] }
-});
-
-setupProduct({
-  id:'cuban', name:'Thin Cuban Necklace', select:'cubanColor', btn:'cubanBtn', stock:'cubanStock', 
-  img1:'cubanImg1', img2:'cubanImg2', 
-  images:{ Gold: ['images/cuban-gold.jpg', 'images/cuban-gold.jpg'], Silver: ['images/cuban-silver.jpg', 'images/cuban-silver.jpg'] }
-});
-
-setupProduct({
-  id:'cube', name:'Cube Necklace', select:'cubeColor', btn:'cubeBtn', stock:'cubeStock', 
-  img1:'cubeImg1', img2:'cubeImg2', 
-  images:{ Gold: ['images/cube-gold.jpg', 'images/cube-gold.jpg'], Silver: ['images/cube-silver.jpg', 'images/cube-silver.jpg'] }
-});
+  }
 </script>
 
 </body>
