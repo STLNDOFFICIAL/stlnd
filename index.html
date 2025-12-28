@@ -20,10 +20,9 @@
     main{max-width:1100px;margin:40px auto;padding:0 20px}
 
     .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:32px;margin-top:40px}
-
     .card{border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px}
 
-    .image-wrapper{position:relative;height:220px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,.1);background:#eee}
+    .image-wrapper{position:relative;height:220px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,.1);background:#f4f4f4}
     .image-wrapper img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .3s ease}
     .image-wrapper img.second{opacity:0}
     .image-wrapper:hover img.second{opacity:1}
@@ -31,13 +30,17 @@
     .badge{position:absolute;top:10px;left:10px;background:var(--danger);color:#fff;padding:4px 8px;font-size:12px;border-radius:6px;display:none;z-index:10}
 
     h3{margin:0}
-    select,button{border:1px solid var(--line);background:transparent;padding:8px;border-radius:6px;font-size:14px;width:100%}
-    button{cursor:pointer;background:var(--line);color:white;font-weight:bold}
+    select,button{border:1px solid var(--line);background:transparent;padding:10px;border-radius:6px;font-size:14px;width:100%}
+    button{cursor:pointer;background:var(--line);color:white;font-weight:bold;text-transform:uppercase;letter-spacing:1px}
     button[disabled]{opacity:.4;cursor:not-allowed;background:transparent;color:var(--line)}
+    
     .price{font-weight:700}
     .meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
     .stock{font-size:13px;opacity:.7}
 
+    /* QR Section */
+    .qr-section{text-align:center;margin-top:60px;padding:40px 20px;background-color:#fafafa;border:1px solid var(--line);border-radius:15px}
+    
     footer{max-width:1100px;margin:60px auto 20px;padding:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;color:rgba(0,0,0,.7)}
   </style>
 </head>
@@ -51,11 +54,10 @@
 <main>
   <section>
     <h2>DROP 01 — Essentials</h2>
-    <p>Mediterranean-inspired chains & bracelets. Limited quantities.</p>
+    <p>Inspiración mediterránea. Cantidades limitadas.</p>
   </section>
 
   <section class="products">
-
     <article class="card" id="nautic">
       <div class="image-wrapper">
         <span class="badge">Agotado</span>
@@ -69,7 +71,7 @@
         <option value="Black" data-stock="3">Black</option>
       </select>
       <div class="stock" id="nauticStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$30,000 COP</div><button id="nauticBtn" disabled>Ordenar</button></div>
+      <div class="meta"><div class="price">$30,000 COP</div><button id="nauticBtn" disabled>Ordenar por DM</button></div>
     </article>
 
     <article class="card" id="beach">
@@ -85,7 +87,7 @@
         <option value="Silver" data-stock="3">Silver</option>
       </select>
       <div class="stock" id="beachStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$32,000 COP</div><button id="beachBtn" disabled>Ordenar</button></div>
+      <div class="meta"><div class="price">$32,000 COP</div><button id="beachBtn" disabled>Ordenar por DM</button></div>
     </article>
 
     <article class="card" id="cuban">
@@ -101,7 +103,7 @@
         <option value="Silver" data-stock="2">Silver</option>
       </select>
       <div class="stock" id="cubanStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$38,000 COP</div><button id="cubanBtn" disabled>Ordenar</button></div>
+      <div class="meta"><div class="price">$38,000 COP</div><button id="cubanBtn" disabled>Ordenar por DM</button></div>
     </article>
 
     <article class="card" id="cube">
@@ -117,15 +119,23 @@
         <option value="Silver" data-stock="3">Silver</option>
       </select>
       <div class="stock" id="cubeStock">Selecciona un color</div>
-      <div class="meta"><div class="price">$38,000 COP</div><button id="cubeBtn" disabled>Ordenar</button></div>
+      <div class="meta"><div class="price">$38,000 COP</div><button id="cubeBtn" disabled>Ordenar por DM</button></div>
     </article>
-
   </section>
+
+  <section class="qr-section">
+    <p style="font-weight: 300; letter-spacing: 4px; font-size: 14px; margin-bottom: 20px;">FOLLOW @STLNDOFFICIAL</p>
+    <div style="background: #fff; padding: 15px; display: inline-block; border-radius: 12px; border: 1px solid #ddd;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/stlndofficial" alt="QR STLND">
+    </div>
+    <p style="font-size: 13px; margin-top: 15px; opacity: 0.7;">Escanea para seguir nuestra comunidad.</p>
+  </section>
+
 </main>
 
 <footer>
   <div>© 2025 STLND</div>
-  <div>Follow @stlndofficial • Order via WhatsApp</div>
+  <div>Envíos a toda Colombia</div>
 </footer>
 
 <script>
@@ -142,71 +152,54 @@ function setupProduct(config){
     const color = opt.value;
     const stock = parseInt(opt.dataset.stock);
     
-    // Cambiar las imágenes según el color seleccionado
+    // Cambiar imágenes
     if(config.images[color]){
       img1.src = config.images[color][0];
       img2.src = config.images[color][1];
     }
 
+    // Gestionar stock y botón
     if(stock > 0){
       badge.style.display = 'none';
-      stockText.textContent = `Stock disponible: ${stock}`;
+      stockText.textContent = `Disponibles: ${stock}`;
       btn.disabled = false;
-      btn.textContent = 'Ordenar';
     } else {
       badge.style.display = 'block';
       stockText.textContent = 'Agotado';
       btn.disabled = true;
-      btn.textContent = 'Agotado';
     }
   });
 
+  // REDIRECCIÓN A INSTAGRAM
   btn.addEventListener('click', () => {
-    const color = select.value;
-    const msg = `Hola, quiero comprar el ${config.name} (${color}) por ${config.price}`;
-    window.open(`https://wa.me/573052133291?text=${encodeURIComponent(msg)}`, '_blank');
+    // Abrir el perfil directamente
+    window.open('https://www.instagram.com/stlndofficial', '_blank');
   });
 }
 
-// Configuración de los productos (Asegúrate que los nombres de archivo sean exactos)
+// Inicializar productos (Asegúrate que los nombres de imagen coincidan)
 setupProduct({
-  id:'nautic', name:'Nautic Bracelet', price:'$30,000 COP', 
-  select:'nauticColor', btn:'nauticBtn', stock:'nauticStock', 
+  id:'nautic', name:'Nautic Bracelet', select:'nauticColor', btn:'nauticBtn', stock:'nauticStock', 
   img1:'nauticImg1', img2:'nauticImg2', 
-  images:{
-    Navy: ['nautic-navy.jpg', 'nautic-navy.jpg'], 
-    Black: ['nautic-black.jpg', 'nautic-black.jpg']
-  }
+  images:{ Navy: ['nautic-navy.jpg', 'nautic-navy.jpg'], Black: ['nautic-black.jpg', 'nautic-black.jpg'] }
 });
 
 setupProduct({
-  id:'beach', name:'Beach Bracelet', price:'$32,000 COP', 
-  select:'beachColor', btn:'beachBtn', stock:'beachStock', 
+  id:'beach', name:'Beach Bracelet', select:'beachColor', btn:'beachBtn', stock:'beachStock', 
   img1:'beachImg1', img2:'beachImg2', 
-  images:{
-    Gold: ['beach-gold.jpg', 'beach-gold.jpg'], 
-    Silver: ['beach-silver.jpg', 'beach-silver.jpg']
-  }
+  images:{ Gold: ['beach-gold.jpg', 'beach-gold.jpg'], Silver: ['beach-silver.jpg', 'beach-silver.jpg'] }
 });
 
 setupProduct({
-  id:'cuban', name:'Thin Cuban Necklace', price:'$38,000 COP', 
-  select:'cubanColor', btn:'cubanBtn', stock:'cubanStock', 
+  id:'cuban', name:'Thin Cuban Necklace', select:'cubanColor', btn:'cubanBtn', stock:'cubanStock', 
   img1:'cubanImg1', img2:'cubanImg2', 
-  images:{
-    Gold: ['cuban-gold.jpg', 'cuban-gold.jpg'], 
-    Silver: ['cuban-silver.jpg', 'cuban-silver.jpg']
-  }
+  images:{ Gold: ['cuban-gold.jpg', 'cuban-gold.jpg'], Silver: ['cuban-silver.jpg', 'cuban-silver.jpg'] }
 });
 
 setupProduct({
-  id:'cube', name:'Cube Necklace', price:'$38,000 COP', 
-  select:'cubeColor', btn:'cubeBtn', stock:'cubeStock', 
+  id:'cube', name:'Cube Necklace', select:'cubeColor', btn:'cubeBtn', stock:'cubeStock', 
   img1:'cubeImg1', img2:'cubeImg2', 
-  images:{
-    Gold: ['cube-gold.jpg', 'cube-gold.jpg'], 
-    Silver: ['cube-silver.jpg', 'cube-silver.jpg']
-  }
+  images:{ Gold: ['cube-gold.jpg', 'cube-gold.jpg'], Silver: ['cube-silver.jpg', 'cube-silver.jpg'] }
 });
 </script>
 
