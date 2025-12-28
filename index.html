@@ -15,14 +15,8 @@
 
     * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
     
-    body { 
-      margin: 0; 
-      font-family: var(--heading-font); 
-      background: var(--bg); 
-      color: var(--text); 
-    }
+    body { margin: 0; font-family: var(--heading-font); background: var(--bg); color: var(--text); }
 
-    /* HEADER */
     header {
       padding: 20px 40px;
       display: flex;
@@ -35,68 +29,26 @@
       z-index: 100;
     }
 
-    header h1 { 
-      margin: 0; 
-      font-size: 13px; 
-      font-weight: 700; 
-      letter-spacing: 0.4em; 
-      text-transform: uppercase;
-    }
+    header h1 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; }
 
-    .ig-link {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 9px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-    }
+    .ig-link { text-decoration: none; color: var(--text); font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; }
 
-    /* HERO */
-    .hero {
-      padding: 120px 40px 80px 40px;
-      max-width: 1200px;
-    }
+    .hero { padding: 100px 40px; border-bottom: 1px solid var(--line); }
+    .hero .drop-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--faded); margin-bottom: 12px; display: block; }
+    .hero h2 { font-size: 42px; margin: 0; line-height: 1.1; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+    .hero p { margin-top: 25px; max-width: 380px; font-size: 11px; line-height: 1.8; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faded); }
 
-    .hero .drop-label {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--faded);
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .hero h2 {
-      font-size: 42px;
-      margin: 0;
-      line-height: 1.1;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .hero p {
-      margin-top: 25px;
-      max-width: 380px;
-      font-size: 11px;
-      line-height: 1.8;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--faded);
-    }
-
-    /* PRODUCT GRID */
+    /* GRID FULL WIDTH */
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-      border-top: 1px solid var(--line);
+      grid-template-columns: 1fr 1fr; /* Ocupa todo el ancho */
+      width: 100%;
     }
 
     .card {
       border-right: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      padding: 60px 40px;
+      padding: 60px 10%;
       display: flex;
       flex-direction: column;
     }
@@ -109,27 +61,10 @@
       background: #fcfcfc;
     }
 
-    .image-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
-    .card-info { text-align: left; }
-
-    h3 {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      letter-spacing: 0.15em;
-    }
-
-    .price { 
-      font-size: 12px; 
-      color: var(--faded); 
-      margin-bottom: 25px;
-    }
+    h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.15em; }
+    .price { font-size: 12px; color: var(--faded); margin-bottom: 25px; }
 
     select {
       width: 100%;
@@ -141,8 +76,6 @@
       border-radius: 0;
       background: white;
       margin-bottom: 10px;
-      appearance: none;
-      cursor: pointer;
     }
 
     button {
@@ -156,50 +89,21 @@
       text-transform: uppercase;
       letter-spacing: 0.2em;
       cursor: pointer;
+      transition: opacity 0.3s;
     }
 
-    button:hover { background: #000; }
+    button:disabled { background: #f9f9f9; color: #ccc; cursor: not-allowed; }
 
-    .stock-label {
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #aaa;
-      margin-top: 15px;
-      display: block;
-    }
+    .stock-label { font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; margin-top: 15px; }
 
-    /* SHIPPING INFO */
-    .shipping-info {
-        padding: 60px 40px;
-        border-bottom: 1px solid var(--line);
-        background: #fafafa;
-    }
-    
-    .shipping-info p {
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        line-height: 2;
-        margin: 0;
-        color: var(--faded);
-    }
+    .shipping-info { padding: 60px 40px; background: #fafafa; border-bottom: 1px solid var(--line); }
+    .shipping-info p { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; line-height: 2; margin: 0; color: var(--faded); }
 
-    footer {
-      padding: 30px 40px;
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      display: flex;
-      justify-content: space-between;
-      color: #bbb;
-    }
+    footer { padding: 30px 40px; font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; display: flex; justify-content: space-between; color: #bbb; }
 
     @media (max-width: 768px) {
       .products { grid-template-columns: 1fr; }
-      header { padding: 15px 20px; }
-      .hero { padding: 80px 20px; }
-      .card { padding: 40px 20px; }
+      .card { border-right: none; }
     }
   </style>
 </head>
@@ -214,71 +118,67 @@
   <section class="hero">
     <span class="drop-label">Project No. 01</span>
     <h2>The Mediterranean Series</h2>
-    <p>A curated study of minimalism. Handcrafted jewelry designed in Colombia, inspired by the effortless luxury of the Mediterranean coast.</p>
+    <p>A curated study of minimalism. Handcrafted jewelry designed in Colombia.</p>
   </section>
 
   <section class="products">
     <article class="card">
-      <div class="image-wrapper">
-        <img src="images/nautic-black.jpg">
-      </div>
+      <div class="image-wrapper"><img id="img-nautic" src="images/nautic-black.jpg"></div>
       <div class="card-info">
         <h3>Nautic Bracelet</h3>
         <div class="price">30,000 COP</div>
-        <select id="nauticSelect">
-          <option value="Black Heritage">Black Heritage</option>
-          <option value="Navy Blue">Navy Blue</option>
+        <select onchange="updateProduct('nautic', this)">
+          <option value="" disabled selected>Select Color</option>
+          <option value="black" data-stock="4">Black</option>
+          <option value="navy" data-stock="6">Navy Blue</option>
         </select>
-        <button onclick="order('Nautic Bracelet')">Order via DM</button>
-        <span class="stock-label">Availability: In Stock</span>
+        <button id="btn-nautic" disabled onclick="order()">Order via DM</button>
+        <div id="stock-nautic" class="stock-label">Select color for stock info</div>
       </div>
     </article>
 
     <article class="card">
-      <div class="image-wrapper">
-        <img src="images/beach-silver.jpg">
-      </div>
+      <div class="image-wrapper"><img id="img-beach" src="images/beach-silver.jpg"></div>
       <div class="card-info">
         <h3>Beach Bracelet</h3>
         <div class="price">32,000 COP</div>
-        <select id="beachSelect">
-          <option value="Silver">Silver</option>
-          <option value="Gold">Gold</option>
+        <select onchange="updateProduct('beach', this)">
+          <option value="" disabled selected>Select Color</option>
+          <option value="silver" data-stock="5">Silver</option>
+          <option value="gold" data-stock="3">Gold</option>
         </select>
-        <button onclick="order('Beach Bracelet')">Order via DM</button>
-        <span class="stock-label">Availability: In Stock</span>
+        <button id="btn-beach" disabled onclick="order()">Order via DM</button>
+        <div id="stock-beach" class="stock-label">Select color for stock info</div>
       </div>
     </article>
 
     <article class="card">
-      <div class="image-wrapper">
-        <img src="images/cuban-silver.jpg">
-      </div>
+      <div class="image-wrapper"><img id="img-cuban" src="images/cuban-silver.jpg"></div>
       <div class="card-info">
         <h3>Thin Cuban Necklace</h3>
         <div class="price">38,000 COP</div>
-        <select id="cubanSelect">
-          <option value="Silver">Silver</option>
-          <option value="Gold">Gold</option>
+        <select onchange="updateProduct('cuban', this)">
+          <option value="" disabled selected>Select Color</option>
+          <option value="silver" data-stock="2">Silver</option>
+          <option value="gold" data-stock="4">Gold</option>
         </select>
-        <button onclick="order('Thin Cuban Necklace')">Order via DM</button>
-        <span class="stock-label">Availability: In Stock</span>
+        <button id="btn-cuban" disabled onclick="order()">Order via DM</button>
+        <div id="stock-cuban" class="stock-label">Select color for stock info</div>
       </div>
     </article>
 
     <article class="card">
-      <div class="image-wrapper">
-        <img src="images/cube-silver.jpg">
-      </div>
+      <div class="image-wrapper"><img id="img-cube" src="images/cube-silver.jpg"></div>
       <div class="card-info">
         <h3>Cube Necklace</h3>
         <div class="price">38,000 COP</div>
-        <select id="cubeSelect">
-          <option value="Silver">Silver</option>
-          <option value="Gold">Gold</option>
+        <select onchange="updateProduct('cube', this)">
+          <option value="" disabled selected>Select Color</option>
+          <option value="silver" data-stock="8">Silver</option>
+          <option value="gold" data-stock="0">Gold</option>
         </select>
-        <button onclick="order('Cube Necklace')">Order via DM</button>
-        <span class="stock-label">Availability: In Stock</span>
+        <button id="btn-cube" disabled onclick="order()">Order via DM</button>
+        <div id="stock-cube" class="stock-label">Select color for stock info</div>
       </div>
     </article>
   </section>
@@ -295,8 +195,27 @@
 </footer>
 
 <script>
-  function order(productName) {
-    // Esto abre el DM de Instagram directamente
+  function updateProduct(id, el) {
+    const color = el.value;
+    const stock = el.options[el.selectedIndex].getAttribute('data-stock');
+    const img = document.getElementById('img-' + id);
+    const btn = document.getElementById('btn-' + id);
+    const stockLabel = document.getElementById('stock-' + id);
+
+    // Actualiza Imagen (Asegúrate de tener los archivos con estos nombres)
+    img.src = `images/${id}-${color}.jpg`;
+
+    // Actualiza Stock y Botón
+    if(parseInt(stock) > 0) {
+      stockLabel.innerText = `Availability: ${stock} Units Left`;
+      btn.disabled = false;
+    } else {
+      stockLabel.innerText = `Status: Out of Stock`;
+      btn.disabled = true;
+    }
+  }
+
+  function order() {
     window.open('https://ig.me/m/stlndofficial', '_blank');
   }
 </script>
