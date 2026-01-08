@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>STLND — The Mediterranean Series</title>
   <style>
     :root {
@@ -13,10 +13,24 @@
       --heading-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
-    * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+    /* Reset básico para consistencia */
+    * { box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    html { -webkit-text-size-adjust: 100%; }
     
-    body { margin: 0; font-family: var(--heading-font); background: var(--bg); color: var(--text); }
+    body { 
+      margin: 0; 
+      font-family: var(--heading-font); 
+      background: var(--bg); 
+      color: var(--text);
+      /* Esto centra la web en pantallas gigantes para que no se deforme */
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
 
+    /* HEADER */
     header {
       padding: 20px 40px;
       display: flex;
@@ -29,28 +43,72 @@
       z-index: 100;
     }
 
-    header h1 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; }
+    header h1 { 
+      margin: 0; 
+      font-size: 13px; 
+      font-weight: 700; 
+      letter-spacing: 0.4em; 
+      text-transform: uppercase; 
+    }
 
-    .ig-link { text-decoration: none; color: var(--text); font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; }
+    .ig-link { 
+      text-decoration: none; 
+      color: var(--text); 
+      font-size: 9px; 
+      font-weight: 600; 
+      text-transform: uppercase; 
+      letter-spacing: 0.2em; 
+    }
 
-    .hero { padding: 100px 40px; border-bottom: 1px solid var(--line); }
-    .hero .drop-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--faded); margin-bottom: 12px; display: block; }
-    .hero h2 { font-size: 42px; margin: 0; line-height: 1.1; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
-    .hero p { margin-top: 25px; max-width: 380px; font-size: 11px; line-height: 1.8; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faded); }
+    /* HERO SECTION */
+    .hero { 
+      padding: 100px 40px; 
+      border-bottom: 1px solid var(--line); 
+    }
+    .hero .drop-label { 
+      font-size: 9px; 
+      letter-spacing: 0.3em; 
+      text-transform: uppercase; 
+      color: var(--faded); 
+      margin-bottom: 12px; 
+      display: block; 
+    }
+    .hero h2 { 
+      font-size: 42px; 
+      margin: 0; 
+      line-height: 1.1; 
+      font-weight: 500; 
+      text-transform: uppercase; 
+      letter-spacing: 0.05em; 
+    }
+    .hero p { 
+      margin-top: 25px; 
+      max-width: 380px; 
+      font-size: 11px; 
+      line-height: 1.8; 
+      text-transform: uppercase; 
+      letter-spacing: 0.1em; 
+      color: var(--faded); 
+    }
 
-    /* GRID FULL WIDTH */
+    /* PRODUCTS GRID */
     .products {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* Ocupa todo el ancho */
+      grid-template-columns: 1fr 1fr; /* 50% - 50% en escritorio */
       width: 100%;
     }
 
     .card {
       border-right: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      padding: 60px 10%;
+      padding: 60px 40px;
       display: flex;
       flex-direction: column;
+    }
+
+    /* Lógica para quitar bordes duplicados en Escritorio */
+    .products .card:nth-child(even) {
+      border-right: none;
     }
 
     .image-wrapper {
@@ -59,13 +117,33 @@
       overflow: hidden;
       margin-bottom: 30px;
       background: #fcfcfc;
+      width: 100%;
     }
 
-    .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+    .image-wrapper img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block; /* Elimina espacio fantasma debajo de imagenes */
+    }
 
-    h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.15em; }
-    .price { font-size: 12px; color: var(--faded); margin-bottom: 25px; }
+    .card-info { width: 100%; }
 
+    h3 { 
+      font-size: 12px; 
+      font-weight: 600; 
+      text-transform: uppercase; 
+      margin: 0 0 6px 0; 
+      letter-spacing: 0.15em; 
+    }
+    
+    .price { 
+      font-size: 12px; 
+      color: var(--faded); 
+      margin-bottom: 25px; 
+    }
+
+    /* FORM ELEMENTS */
     select {
       width: 100%;
       border: 1px solid #e0e0e0;
@@ -76,6 +154,10 @@
       border-radius: 0;
       background: white;
       margin-bottom: 10px;
+      cursor: pointer;
+      -webkit-appearance: none; /* Fix para iPhone */
+      appearance: none;
+      font-family: var(--heading-font);
     }
 
     button {
@@ -89,21 +171,78 @@
       text-transform: uppercase;
       letter-spacing: 0.2em;
       cursor: pointer;
-      transition: opacity 0.3s;
+      transition: background 0.3s, opacity 0.3s;
+      border-radius: 0;
     }
 
-    button:disabled { background: #f9f9f9; color: #ccc; cursor: not-allowed; }
+    button:disabled { 
+      background: #f9f9f9; 
+      color: #ccc; 
+      cursor: not-allowed; 
+    }
+    
+    button:hover:not(:disabled) {
+      background: #000;
+    }
 
-    .stock-label { font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; margin-top: 15px; }
+    .stock-label { 
+      font-size: 8px; 
+      text-transform: uppercase; 
+      letter-spacing: 0.1em; 
+      color: #aaa; 
+      margin-top: 15px; 
+      display: block;
+    }
 
-    .shipping-info { padding: 60px 40px; background: #fafafa; border-bottom: 1px solid var(--line); }
-    .shipping-info p { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; line-height: 2; margin: 0; color: var(--faded); }
+    /* SHIPPING & FOOTER */
+    .shipping-info { 
+      padding: 60px 40px; 
+      background: #fafafa; 
+      border-bottom: 1px solid var(--line); 
+    }
+    .shipping-info p { 
+      font-size: 10px; 
+      text-transform: uppercase; 
+      letter-spacing: 0.1em; 
+      line-height: 2; 
+      margin: 0; 
+      color: var(--faded); 
+    }
 
-    footer { padding: 30px 40px; font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; display: flex; justify-content: space-between; color: #bbb; }
+    footer { 
+      padding: 30px 40px; 
+      font-size: 8px; 
+      text-transform: uppercase; 
+      letter-spacing: 0.2em; 
+      display: flex; 
+      justify-content: space-between; 
+      color: #bbb; 
+    }
 
+    /* ---- MOBILE OPTIMIZATION ---- */
     @media (max-width: 768px) {
+      header { padding: 15px 20px; }
+      
+      .hero { 
+        padding: 80px 20px; 
+      }
+      
+      .hero h2 { font-size: 32px; } /* Ajuste leve para que no rompa palabras largas */
+
       .products { grid-template-columns: 1fr; }
-      .card { border-right: none; }
+      
+      /* En móvil, quitamos todos los bordes derechos para que ocupe el ancho total limpio */
+      .card { 
+        padding: 50px 20px; 
+        border-right: none; 
+      }
+      
+      .products .card:nth-child(even) {
+        border-right: none; /* Asegurar que no quede borde en móvil */
+      }
+
+      .shipping-info { padding: 50px 20px; }
+      footer { padding: 30px 20px; }
     }
   </style>
 </head>
@@ -202,16 +341,18 @@
     const btn = document.getElementById('btn-' + id);
     const stockLabel = document.getElementById('stock-' + id);
 
-    // Actualiza Imagen (Asegúrate de tener los archivos con estos nombres)
-    img.src = `images/${id}-${color}.jpg`;
+    // Actualiza Imagen
+    if(img) img.src = `images/${id}-${color}.jpg`;
 
     // Actualiza Stock y Botón
     if(parseInt(stock) > 0) {
       stockLabel.innerText = `Availability: ${stock} Units Left`;
       btn.disabled = false;
+      btn.style.opacity = "1";
     } else {
       stockLabel.innerText = `Status: Out of Stock`;
       btn.disabled = true;
+      btn.style.opacity = "0.5";
     }
   }
 
